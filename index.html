@@ -138,7 +138,8 @@
       <div class="nav-group">
         <div class="nav-label">Ajustes</div>
         <a class="nav-link" data-target="ajustes" href="#ajustes">⚙️ Panel de ajustes</a>
-        <a class="nav-link" data-target="cortes" href="#cortes">✂️ Configuración de cortes</a>
+        <a class="nav-link" data-target="cortes" href="#cortes">✂️ Configuración de cortes <span
+            class="pill">Clave</span></a>
         <a class="nav-link" data-target="facturacion-ajustes" href="#facturacion-ajustes">💳 Facturación</a>
         <a class="nav-link" data-target="olts-ajustes" href="#olts-ajustes">🔌 OLTs</a>
         <a class="nav-link" data-target="logs-plantillas" href="#logs-plantillas">📄 Logs y plantillas</a>
@@ -2020,18 +2021,255 @@
         </section>
         <!-- CONFIGURACIÓN DE CORTES -->
         <section class="doc-section"
-          data-search="configuracion cortes dias habilitados facturacion horarios automatico mikrotik smartolt adminolt suspender clientes gracia reintentos"
+          data-search="configuracion cortes dias habilitados horarios automatico mikrotik smartolt adminolt suspender clientes gracia reintentos configurar cortes de global router alcance guardar cambios activar manual por cliente individual general recordatorios whatsapp correo notificaciones facturar tercero segmentar sectores dia pago postpago prepago comprobante contrato"
           id="cortes">
-          <div class="section-kicker">Ajustes</div>
+          <div class="section-kicker">Ajustes — módulo clave</div>
           <h2 class="section-title">Configuración de cortes</h2>
-          <p class="section-desc">Define cuándo y cómo el sistema aplica cortes automáticos a los servicios con pagos
-            vencidos. Una configuración correcta ayuda a reducir revisiones manuales y mantener mayor control sobre
-            clientes vencidos.</p>
-          <figure class="figure">
-            <img alt="Configuración de cortes" class="doc-img" decoding="async" height="735" loading="lazy"
-              src="assets/imgs/cortes-config.webp" width="1389" />
-            <figcaption>Días habilitados, horarios de cortes, plataformas y parámetros de reintento.</figcaption>
-          </figure>
+          <p class="section-desc">Define cuándo y cómo el sistema suspende los servicios con facturas vencidas. ISPMAX
+            ofrece dos caminos que se complementan: el <strong>corte por cliente</strong>, que fija las condiciones
+            individuales de cada servicio, y el <strong>corte general</strong>, que define los días y horarios en que el
+            sistema ejecuta el proceso para todos.</p>
+          <div class="callout tip"><span class="callout-icon">💡</span>
+            <div><strong>¿Cuál usar?</strong> Los dos, y en ese orden. Primero configura las condiciones de cada cliente
+              (Método 1); después ajusta cuándo se dispara el proceso (Método 2). El corte general respeta lo que definiste
+              por cliente: día de pago, días de gracia y meses vencidos.</div>
+          </div>
+
+          <hr class="divider" />
+
+          <h3>Método 1 · Corte por cliente <span class="badge green">Recomendado</span></h3>
+          <p class="section-desc section-desc--tight">Configurar el corte cliente por cliente te da control total: cada
+            servicio tiene su día de pago, sus días de gracia y su propio canal de aviso. Es más trabajo inicial, pero
+            evita sorpresas y te permite ajustar casos particulares sin tocar la configuración global.</p>
+          <div class="callout warn"><span class="callout-icon">⚠️</span>
+            <div><strong>Segmenta por sectores.</strong> Agrupa a los clientes por zona y escalona los días de corte y
+              los recordatorios. Enviar cientos de mensajes de WhatsApp el mismo día puede provocar el bloqueo del
+              número por parte de Meta. Como referencia, no superes los <strong>60 envíos diarios</strong> por número.
+            </div>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-body">
+                <p>Entra a <strong>Gestión de Clientes › Clientes</strong>.</p>
+                <figure class="figure figure--compact figure--start" style="--figure-max:210px">
+                  <img alt="Menú Clientes" class="doc-img" decoding="async" height="67" loading="lazy"
+                    src="assets/imgs/cortes-cliente-menu.webp" width="311" />
+                  <figcaption>Acceso al listado de clientes.</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-body">
+                <p>Ubica al cliente con los filtros superiores (<strong>Por Router</strong>, <strong>Estado</strong>,
+                  <strong>Red</strong>, <strong>Plan</strong>, <strong>Caja NAP</strong>) o con el buscador, y pulsa el
+                  ícono del lápiz <strong>Editar</strong> en la columna Acciones.</p>
+                <figure class="figure">
+                  <img alt="Listado de clientes con filtros" class="doc-img" decoding="async" height="375"
+                    loading="lazy" src="assets/imgs/cortes-cliente-listado.webp" width="1575" />
+                  <figcaption>Listado de clientes: filtros por router, estado, red, plan y caja NAP.</figcaption>
+                </figure>
+                <figure class="figure figure--compact figure--start" style="--figure-max:130px">
+                  <img alt="Botón Editar del cliente" class="doc-img" decoding="async" height="88" loading="lazy"
+                    src="assets/imgs/cortes-cliente-boton-editar.webp" width="146" />
+                  <figcaption>Ícono Editar en la columna Acciones.</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-body">
+                <p>Dentro del cliente, abre <strong>Facturación / Pagos</strong>.</p>
+                <figure class="figure figure--compact figure--start" style="--figure-max:190px">
+                  <img alt="Botón Facturación / Pagos" class="doc-img" decoding="async" height="54" loading="lazy"
+                    src="assets/imgs/cortes-cliente-boton-facturacion.webp" width="272" />
+                  <figcaption>Acceso a la ficha de facturación del cliente.</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-body">
+                <p>La pestaña <strong>Facturas</strong> se abre por defecto. Antes de tocar la configuración, revisa aquí
+                  el estado real del cliente: vencimiento, total, abonado y estado de cada comprobante. El corte se
+                  ejecuta en función de estas facturas.</p>
+                <figure class="figure">
+                  <img alt="Pestaña Facturas del cliente" class="doc-img" decoding="async" height="322" loading="lazy"
+                    src="assets/imgs/cortes-cliente-pestana-facturas.webp" width="1459" />
+                  <figcaption>Pestaña Facturas: vencimiento, montos, estado y acciones por comprobante.</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-body">
+                <p>Pasa a la pestaña <strong>Configuración</strong>. Aquí están todos los parámetros que determinan
+                  cuándo se corta el servicio de este cliente. Usa el selector de la esquina superior derecha para elegir
+                  el servicio si el cliente tiene más de uno.</p>
+                <figure class="figure">
+                  <img alt="Pestaña Configuración del servicio" class="doc-img" decoding="async" height="787"
+                    loading="lazy" src="assets/imgs/cortes-cliente-configuracion.webp" width="1459" />
+                  <figcaption>Pestaña Configuración: facturación, notificaciones y facturación a tercero.</figcaption>
+                </figure>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Campo</th>
+                        <th>Qué define</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Día Pago</strong></td>
+                        <td>Día del mes en que vence la factura de este servicio.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Tipo</strong></td>
+                        <td>Postpago (Vencido) cobra el mes ya consumido; Prepago cobra por adelantado.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Tipo Impuesto</strong></td>
+                        <td>Cómo se calcula el impuesto sobre el valor del plan (ej. Impuestos incluido).</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Días de gracia</strong></td>
+                        <td>Tolerancia después del vencimiento antes de aplicar el corte. Con <code>0 Día</code> el corte
+                          procede apenas la factura vence.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Aplicar Corte</strong></td>
+                        <td>Cuánta deuda acumulada dispara la suspensión (ej. <code>1 Mes Vencido</code>).</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Tipo Comprobante</strong></td>
+                        <td>Recibo o Factura. Determina qué documento genera el sistema para este servicio.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Creación Anticipada</strong></td>
+                        <td>Con cuántos días de anticipación se genera la próxima factura. Ver <a
+                            href="#facturacion-automatica" data-goto="facturacion-automatica">Facturación
+                            automática</a>.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>N° de contrato</strong></td>
+                        <td>Número de contrato asociado al servicio.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Dirección en factura</strong></td>
+                        <td>Qué dirección se imprime en el comprobante: la principal o la del servicio.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-body">
+                <p>En <strong>Notificaciones</strong>, abre <strong>Recordatorios de pago</strong> y elige el canal de
+                  aviso: <span class="badge gray">Ninguno</span>, <span class="badge blue">Correo</span> o <span
+                    class="badge green">WhatsApp</span>.</p>
+                <figure class="figure figure--compact figure--start" style="--figure-max:280px">
+                  <img alt="Selector de canal de recordatorio" class="doc-img" decoding="async" height="196"
+                    loading="lazy" src="assets/imgs/cortes-cliente-canal-recordatorio.webp" width="490" />
+                  <figcaption>Canales disponibles para el recordatorio de pago.</figcaption>
+                </figure>
+                <p class="section-note">Al elegir un canal se habilitan hasta <strong>tres recordatorios</strong>
+                  independientes (#1, #2 y #3). Cada uno se programa por separado, lo que permite avisar antes del
+                  vencimiento, el mismo día y antes del corte.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-body">
+                <p>Si el cliente necesita que la factura salga a nombre de otra persona o empresa, activa <strong>Usar
+                    datos diferentes para facturar</strong> en <strong>Facturar a tercero</strong> y completa los datos
+                  del titular. Termina con <strong>Guardar</strong>.</p>
+                <figure class="figure">
+                  <img alt="Recordatorios y facturación a tercero" class="doc-img" decoding="async" height="696"
+                    loading="lazy" src="assets/imgs/cortes-cliente-recordatorios-tercero.webp" width="1385" />
+                  <figcaption>Recordatorios #1 a #3 activos y datos de facturación a tercero.</figcaption>
+                </figure>
+                <ul class="mini-list">
+                  <li><strong>Tipo identificación / Identificación</strong> — documento del tercero. Obligatorio.</li>
+                  <li><strong>Razón social / Nombre</strong> — a quién se emite el comprobante. Obligatorio.</li>
+                  <li><strong>Dirección, Celular, Email</strong> — datos de contacto y envío. Opcionales.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="callout tip"><span class="callout-icon">💡</span>
+            <div>Los cambios guardados aquí solo afectan a <strong>este servicio</strong>. Si necesitas aplicar el mismo
+              día de pago o los mismos días de gracia a muchos clientes a la vez, usa <a href="#base-datos"
+                data-goto="base-datos">Cambios masivos</a> en Base de datos.</div>
+          </div>
+
+          <hr class="divider" />
+
+          <h3>Método 2 · Corte general</h3>
+          <p class="section-desc section-desc--tight">Es la vía global: no discrimina por cliente, sino que define
+            cuándo el sistema recorre la cartera y suspende a todo el que cumpla las condiciones de corte. Se configura
+            desde <strong>Ajustes › Configuración de cortes</strong> y puede aplicarse a toda la red o a un router en
+            particular.</p>
+          <div class="callout warn"><span class="callout-icon">⚠️</span>
+            <div><strong>El corte se ejecuta según las facturas vencidas.</strong> Revisa siempre <a href="#facturas"
+                data-goto="facturas">Facturas</a> y <a href="#pagos-registrados" data-goto="pagos-registrados">Pagos
+                registrados</a> antes de un corte programado: un pago que no alcanzó a registrarse suspende a un cliente
+              que ya pagó. Ajusta estas opciones con criterio y conociendo su alcance, porque afectan a toda la cartera
+              a la vez.</div>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-body">
+                <p>Entra al apartado <strong>Ajustes</strong>.</p>
+                <figure class="figure figure--compact figure--start" style="--figure-max:215px">
+                  <img alt="Menú Ajustes" class="doc-img" decoding="async" height="55" loading="lazy"
+                    src="assets/imgs/cortes-general-menu-ajustes.webp" width="321" />
+                  <figcaption>Acceso al panel de ajustes.</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-body">
+                <p>Selecciona <strong>Configuración de Cortes</strong>.</p>
+                <figure class="figure figure--compact figure--start" style="--figure-max:130px">
+                  <img alt="Acceso a Configuración de Cortes" class="doc-img" decoding="async" height="187"
+                    loading="lazy" src="assets/imgs/cortes-general-acceso.webp" width="195" />
+                  <figcaption>Ícono Configuración de Cortes dentro del panel de ajustes.</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-body">
+                <p>Define los <strong>días habilitados</strong>, los <strong>horarios</strong> de cada día y los
+                  <strong>reintentos automáticos</strong>. Elige también sobre qué plataformas se aplica el corte:
+                  Mikrotik, SmartOLT y/o AdminOLT.</p>
+                <figure class="figure">
+                  <img alt="Panel de configuración de cortes" class="doc-img" decoding="async" height="737"
+                    loading="lazy" src="assets/imgs/cortes-general-panel.webp" width="1344" />
+                  <figcaption>Días habilitados, configurar cortes de, horarios y reintentos automáticos.</figcaption>
+                </figure>
+                <div class="callout tip"><span class="callout-icon">💡</span>
+                  <div>Los cuatro bloques comparten un solo botón <strong>Guardar Cambios</strong>, el de
+                    <strong>Configurar cortes de</strong>. Guarda todo junto: días, horarios y reintentos.</div>
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-body">
+                <p>En <strong>Configurar cortes de</strong> eliges a qué alcance aplica lo que acabas de definir.</p>
+                <figure class="figure figure--compact figure--start" style="--figure-max:400px">
+                  <img alt="Selector de router en Configurar cortes de" class="doc-img" decoding="async" height="297"
+                    loading="lazy" src="assets/imgs/cortes-general-selector-router.webp" width="641" />
+                  <figcaption>Selector de alcance: configuración global o por router.</figcaption>
+                </figure>
+                <ul class="mini-list">
+                  <li><strong>Global (por defecto)</strong> — aplica a todos los routers que no tengan una configuración
+                    propia.</li>
+                  <li><strong>Un router específico</strong> — personaliza los cortes de ese equipo y deja al resto con la
+                    configuración global. Útil para escalonar cortes por zona.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div class="table-wrap">
             <table>
               <thead>
@@ -2046,10 +2284,10 @@
                   <td>Define qué días de la semana el sistema puede ejecutar cortes.</td>
                 </tr>
                 <tr>
-                  <td><strong>Facturación</strong></td>
-                  <td>Permite habilitar las notificaciones automáticas asociadas al corte (aviso al cliente al suspender
-                    el servicio). La generación de facturas anticipadas se configura por cliente en <a
-                      href="#facturacion-automatica" data-goto="facturacion-automatica">Facturación automática</a>.</td>
+                  <td><strong>Configurar cortes de</strong></td>
+                  <td>Define el alcance de la configuración: <strong>Global</strong> para todos los routers sin ajustes
+                    propios, o un <strong>router específico</strong> para personalizar sus cortes. Contiene el botón
+                    <strong>Guardar Cambios</strong> que guarda días, horarios y reintentos.</td>
                 </tr>
                 <tr>
                   <td><strong>Horarios de cortes</strong></td>
@@ -2067,7 +2305,9 @@
                 </tr>
                 <tr>
                   <td><strong>Aplicar cortes manualmente</strong></td>
-                  <td>Ejecuta el proceso de cortes de forma inmediata sin esperar el horario programado.</td>
+                  <td>Ejecuta el proceso de forma inmediata, sin esperar al día y horario programados. Respeta el
+                    alcance elegido en <strong>Configurar cortes de</strong>, así que puedes procesar un router a la vez
+                    en lugar de toda la red.</td>
                 </tr>
               </tbody>
             </table>

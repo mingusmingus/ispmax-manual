@@ -241,6 +241,14 @@ body:not(.light) .badge.yellow{color:var(--yellow)}
 .steps{counter-reset:step;display:grid;gap:10px;margin:14px 0 22px}
 .step{counter-increment:step;display:flex;gap:12px;align-items:flex-start;color:var(--muted);font-size:14px;line-height:1.6}
 .step::before{content:counter(step);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-weight:800;font-size:11px;flex-shrink:0;margin-top:2px}
+/* Paso con contenido enriquecido: figuras, tablas o listas dentro del paso */
+.step-body{flex:1;min-width:0}
+.step-body>p{margin:0}
+.step-body .figure{margin:12px 0 6px}
+.step-body .table-wrap{margin:14px 0 6px}
+.step-body .section-note{margin:12px 0 0}
+.step-body .mini-list{margin:10px 0 0}
+.steps:has(.step-body){gap:26px}
 
 /* ── Images & Figures ──────────────────────── */
 .figure{
