@@ -3,10 +3,10 @@
 #
 # Sirve el manual estático con Nginx Alpine (imagen ≈ 50 MB).
 # Asume reverse proxy delante (Cloudflare / Traefik / Nginx host)
-# que termina HTTPS. Este contenedor solo atiende HTTP en :80.
+# que termina HTTPS. Este contenedor atiende HTTP en :8387.
 #
 # Build:  docker build -t ispmax-manual:latest .
-# Run:    docker run -d --name ispmax-manual -p 8080:80 ispmax-manual:latest
+# Run:    docker run -d --name ispmax-manual --restart unless-stopped -p 8387:8387 ispmax-manual:latest
 # ─────────────────────────────────────────────────────────────
 
 FROM nginx:1.27-alpine
@@ -28,8 +28,8 @@ COPY assets ./assets
 
 # Healthcheck: si Nginx muere, el orquestador lo reinicia
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-  CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+  CMD wget --quiet --tries=1 --spider http://localhost:8387/ || exit 1
 
-EXPOSE 80
+EXPOSE 8387
 
 # Nginx ya viene como CMD en la imagen base; no hace falta sobreescribir.
