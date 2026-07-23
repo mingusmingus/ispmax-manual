@@ -1,53 +1,59 @@
 /* ═══════════════════════════════════════════════════════════════
-   Manual ISPMAX — capa de marca sobre el tema por defecto de Rspress.
+   Manual ISPMAX — capa de diseño sobre el tema por defecto de Rspress.
 
-   Se mantiene la estructura nativa (navbar fija, sidebar, contenido
-   centrado, índice a la derecha) y solo se redefinen tokens y los
-   componentes propios del manual.
+   Mantiene la estructura nativa (navbar fija, sidebar, contenido
+   centrado, índice a la derecha) y reescribe tokens, tipografía y los
+   componentes propios del manual para un acabado profesional.
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── Tokens · tema claro ──────────────────────────────────────── */
 :root {
-  --rp-c-brand: #5f4dee;
-  --rp-c-brand-dark: #4c3ada;
-  --rp-c-brand-darker: #3d2dbb;
+  --rp-c-brand: #5b4bd8;
+  --rp-c-brand-dark: #4a3ac4;
+  --rp-c-brand-darker: #3a2ca6;
   --rp-c-brand-light: #7c6dfa;
   --rp-c-brand-lighter: #a99efc;
-  --rp-c-brand-tint: rgba(124, 109, 250, 0.1);
+  --rp-c-brand-tint: rgba(91, 75, 216, 0.08);
 
   --rp-c-bg: #ffffff;
   --rp-c-bg-alt: #f7f8fc;
-  --rp-c-bg-soft: #f4f6fb;
-  --rp-c-bg-mute: #eef1f8;
+  --rp-c-bg-soft: #f5f6fb;
+  --rp-c-bg-mute: #eceef6;
 
-  --rp-c-divider: #e3e7f2;
-  --rp-c-divider-light: #edf0f7;
+  --rp-c-divider: #e6e9f2;
+  --rp-c-divider-light: #eef0f7;
 
-  --rp-c-text-1: #111827;
-  --rp-c-text-2: #4a5568;
-  --rp-c-text-3: #718096;
-  --rp-c-text-4: #a3adbe;
+  --rp-c-text-1: #1a2233;
+  --rp-c-text-2: #4c5566;
+  --rp-c-text-3: #737d90;
+  --rp-c-text-4: #a6adbd;
   --rp-c-link: var(--rp-c-brand);
 
   --rp-font-family-base: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   --rp-font-family-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
-  --rp-home-hero-title-bg: linear-gradient(92deg, #5f4dee 0%, #7c6dfa 42%, #38bdf8 100%);
+  --rp-radius: 14px;
+  --rp-radius-large: 20px;
+  --rp-radius-small: 9px;
+
+  --rp-home-hero-title-bg: linear-gradient(96deg, #5b4bd8 0%, #7c6dfa 44%, #38bdf8 100%);
   --rp-home-hero-title-color: transparent;
   --rp-home-hero-secondary-color: #38bdf8;
   --rp-home-background-bg:
-    radial-gradient(38% 52% at 100% 0%, rgba(56, 189, 248, 0.16) 0%, rgba(255, 255, 255, 0) 100%),
-    radial-gradient(52% 74% at 0% 0%, rgba(124, 109, 250, 0.2) 0%, rgba(255, 255, 255, 0) 100%), #ffffff;
-  --rp-home-feature-bg: linear-gradient(150deg, rgba(124, 109, 250, 0.06), rgba(56, 189, 248, 0.05));
+    radial-gradient(40% 55% at 100% 0%, rgba(56, 189, 248, 0.14) 0%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(52% 74% at 0% 0%, rgba(124, 109, 250, 0.18) 0%, rgba(255, 255, 255, 0) 100%), #ffffff;
+  --rp-home-feature-bg: linear-gradient(155deg, rgba(124, 109, 250, 0.05), rgba(56, 189, 248, 0.04));
 
   /* Marca propia del manual */
-  --isp-brand: #7c6dfa;
+  --isp-brand: #5b4bd8;
   --isp-brand-2: #38bdf8;
   --isp-surface: #ffffff;
-  --isp-figure-bg: #f7f8fc;
-  --isp-shadow: 0 1px 2px rgba(17, 24, 39, 0.04), 0 8px 24px rgba(17, 24, 39, 0.06);
-  --isp-shadow-hover: 0 2px 6px rgba(95, 77, 238, 0.1), 0 14px 34px rgba(95, 77, 238, 0.14);
-  --isp-figure-max: 100%;
+  --isp-surface-2: #f7f8fc;
+  --isp-figure-bg: #f4f6fb;
+  --isp-ring: rgba(91, 75, 216, 0.35);
+  --isp-shadow-sm: 0 1px 2px rgba(20, 28, 46, 0.05), 0 1px 1px rgba(20, 28, 46, 0.04);
+  --isp-shadow: 0 1px 2px rgba(20, 28, 46, 0.04), 0 8px 24px rgba(20, 28, 46, 0.07);
+  --isp-shadow-hover: 0 2px 8px rgba(91, 75, 216, 0.1), 0 18px 40px rgba(91, 75, 216, 0.16);
 }
 
 /* ── Tokens · tema oscuro ─────────────────────────────────────── */
@@ -57,31 +63,58 @@
   --rp-c-brand-darker: #6a59f0;
   --rp-c-brand-light: #a396fc;
   --rp-c-brand-lighter: #cdc6fe;
-  --rp-c-brand-tint: rgba(124, 109, 250, 0.18);
+  --rp-c-brand-tint: rgba(124, 109, 250, 0.16);
 
   --rp-c-bg: #0d1117;
   --rp-c-bg-alt: #090c12;
-  --rp-c-bg-soft: #161b22;
-  --rp-c-bg-mute: #1c2230;
+  --rp-c-bg-soft: #151a22;
+  --rp-c-bg-mute: #1b212c;
 
-  --rp-c-divider: #262d3b;
-  --rp-c-divider-light: #1e2531;
+  --rp-c-divider: #242c39;
+  --rp-c-divider-light: #1b2129;
 
-  --rp-c-text-1: #e6edf3;
-  --rp-c-text-2: #b2bccc;
-  --rp-c-text-3: #8b96aa;
-  --rp-c-text-4: #5b6779;
+  --rp-c-text-1: #e8eef6;
+  --rp-c-text-2: #aab4c5;
+  --rp-c-text-3: #808b9e;
+  --rp-c-text-4: #566072;
 
-  --rp-home-hero-title-bg: linear-gradient(92deg, #a396fc 0%, #7c6dfa 40%, #38bdf8 100%);
+  --rp-home-hero-title-bg: linear-gradient(96deg, #a396fc 0%, #7c6dfa 42%, #38bdf8 100%);
   --rp-home-background-bg:
-    radial-gradient(40% 54% at 100% 0%, rgba(56, 189, 248, 0.16) 0%, rgba(13, 17, 23, 0) 100%),
-    radial-gradient(56% 78% at 0% 0%, rgba(124, 109, 250, 0.22) 0%, rgba(13, 17, 23, 0) 100%), #0d1117;
-  --rp-home-feature-bg: linear-gradient(150deg, rgba(124, 109, 250, 0.1), rgba(56, 189, 248, 0.06));
+    radial-gradient(42% 56% at 100% 0%, rgba(56, 189, 248, 0.15) 0%, rgba(13, 17, 23, 0) 100%),
+    radial-gradient(56% 78% at 0% 0%, rgba(124, 109, 250, 0.2) 0%, rgba(13, 17, 23, 0) 100%), #0d1117;
+  --rp-home-feature-bg: linear-gradient(155deg, rgba(124, 109, 250, 0.09), rgba(56, 189, 248, 0.05));
 
-  --isp-surface: #161b22;
-  --isp-figure-bg: #0b0f15;
-  --isp-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.32);
-  --isp-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.45), 0 16px 40px rgba(124, 109, 250, 0.18);
+  --isp-surface: #151a22;
+  --isp-surface-2: #10151c;
+  --isp-figure-bg: #0a0e14;
+  --isp-ring: rgba(139, 125, 251, 0.4);
+  --isp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --isp-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+  --isp-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.45), 0 18px 40px rgba(124, 109, 250, 0.16);
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+.rspress-doc {
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+
+.rspress-doc p {
+  color: var(--rp-c-text-2);
+}
+
+.rspress-doc strong {
+  color: var(--rp-c-text-1);
+  font-weight: 650;
+}
+
+.rspress-doc a:not(.rp-header-anchor) {
+  font-weight: 550;
+  text-underline-offset: 2px;
 }
 
 /* ── Tipografía ───────────────────────────────────────────────── */
@@ -93,45 +126,77 @@
 .rp-home-hero__title,
 .rp-home-hero__name {
   font-family: 'Sora', var(--rp-font-family-base);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.022em;
 }
 
 .rspress-doc h1 {
-  font-size: 2.15rem;
-  line-height: 1.2;
-  margin-bottom: 0.6rem;
+  font-size: 2.3rem;
+  font-weight: 750;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
 }
 
 .rspress-doc h2 {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rp-c-divider-light);
-  font-size: 1.45rem;
+  margin-top: 3.25rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--rp-c-divider);
+  font-size: 1.5rem;
+  font-weight: 680;
 }
 
 .rspress-doc h3 {
-  margin-top: 2rem;
-  font-size: 1.15rem;
+  margin-top: 2.1rem;
+  font-size: 1.18rem;
+  font-weight: 640;
 }
 
-.rspress-doc {
-  font-size: 15px;
-  line-height: 1.75;
+.rspress-doc h4 {
+  margin-top: 1.6rem;
+  font-size: 1.02rem;
+  font-weight: 640;
 }
 
-.rspress-doc p {
-  color: var(--rp-c-text-2);
+/* ── Ancla de encabezado ──────────────────────────────────────────
+   El tema pinta un carácter "#" a la izquierda del título. Se oculta el
+   glifo y se sustituye por un icono de enlace discreto que solo aparece
+   al pasar el ratón sobre el encabezado. Así nunca se ve un "#" suelto. */
+.rspress-doc :where(h1, h2, h3, h4, h5, h6) .rp-header-anchor {
+  font-size: 0 !important;
+  width: 1.1em;
+  height: 1.1em;
+  margin-left: -1.5em;
+  opacity: 0;
+  border: 0 !important;
+  transition: opacity 0.18s ease;
 }
 
-.rspress-doc strong {
-  color: var(--rp-c-text-1);
-  font-weight: 600;
+.rspress-doc :where(h1, h2, h3, h4, h5, h6) .rp-header-anchor::before {
+  content: '';
+  display: block;
+  width: 1.1em;
+  height: 1.1em;
+  background-color: var(--rp-c-brand);
+  -webkit-mask: var(--isp-link-icon) center / contain no-repeat;
+  mask: var(--isp-link-icon) center / contain no-repeat;
+}
+
+:root {
+  --isp-link-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/%3E%3C/svg%3E");
+}
+
+.rspress-doc :where(h1, h2, h3, h4, h5, h6):hover .rp-header-anchor,
+.rspress-doc :where(h1, h2, h3, h4, h5, h6) .rp-header-anchor:focus {
+  opacity: 0.6;
+}
+
+.rspress-doc :where(h1, h2, h3, h4, h5, h6) .rp-header-anchor:hover {
+  opacity: 1;
 }
 
 /* ── Navbar ───────────────────────────────────────────────────── */
 .rp-nav {
-  backdrop-filter: saturate(160%) blur(14px);
-  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(16px);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
 }
 
 .rp-nav__title__logo-image,
@@ -154,26 +219,35 @@
 .rp-sidebar__section-header {
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--rp-c-text-3);
 }
 
+.rp-sidebar-item a,
+.rp-sidebar-item__left {
+  font-size: 14px;
+}
+
+/* Elemento activo del menú con un toque de marca. */
+.rp-sidebar-item--active {
+  font-weight: 600;
+}
+
 /* ── Entradilla y kicker ──────────────────────────────────────── */
-/* Se escriben con el contenedor delante para ganar a `.rspress-doc p`. */
 .rspress-doc .isp-kicker {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.4rem;
   font-family: 'Sora', var(--rp-font-family-base);
   font-size: 11.5px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--rp-c-brand);
 }
 
 .rspress-doc .isp-lead {
-  margin: 0 0 1.6rem;
-  font-size: 1.03rem;
+  margin: 0 0 1.75rem;
+  font-size: 1.08rem;
   line-height: 1.7;
   color: var(--rp-c-text-2);
 }
@@ -190,41 +264,47 @@
   border: 0;
 }
 
-/* ── Figuras (capturas de pantalla) ───────────────────────────── */
+/* ── Figuras (capturas de pantalla) ───────────────────────────────
+   Nunca se amplían por encima de su tamaño real (lo garantiza
+   `--isp-figure-max`, calculado en el componente Figure). */
 .isp-figure {
-  margin: 1.75rem 0;
-  max-width: var(--isp-figure-max, 100%);
+  margin: 1.9rem 0;
+  max-width: min(100%, var(--isp-figure-max, 100%));
 }
 
 .isp-figure__frame {
   overflow: hidden;
   background: var(--isp-figure-bg);
   border: 1px solid var(--rp-c-divider);
-  border-radius: var(--rp-radius, 1rem);
+  border-radius: var(--rp-radius);
   box-shadow: var(--isp-shadow);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: box-shadow 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
 }
 
 .isp-figure__frame:hover {
   border-color: var(--rp-c-brand-lighter);
   box-shadow: var(--isp-shadow-hover);
+  transform: translateY(-2px);
 }
 
 .isp-figure__img {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: var(--isp-figure-ratio, auto);
   cursor: zoom-in;
 }
 
 .isp-figure__caption {
-  margin-top: 0.6rem;
-  font-size: 13px;
+  margin-top: 0.65rem;
+  padding-left: 0.15rem;
+  font-size: 12.5px;
   line-height: 1.55;
   color: var(--rp-c-text-3);
   text-align: center;
 }
 
+/* Figuras pequeñas (botones, menús): alineadas a la izquierda. */
 .isp-figure--start,
 .isp-figure--compact {
   margin-left: 0;
@@ -237,15 +317,19 @@
 }
 
 .isp-figure--hero {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.isp-figure--hero .isp-figure__frame {
+  border-radius: var(--rp-radius-large);
 }
 
 .isp-fig-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1.35rem;
   align-items: flex-start;
-  margin: 1.75rem 0;
+  margin: 1.9rem 0;
 }
 
 .isp-fig-row .isp-figure {
@@ -256,12 +340,14 @@
 .isp-fig-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
-  margin: 1.75rem 0;
+  gap: 1.35rem;
+  margin: 1.9rem 0;
+  align-items: start;
 }
 
 .isp-fig-grid .isp-figure {
   margin: 0;
+  max-width: 100%;
 }
 
 /* ── Tarjetas ─────────────────────────────────────────────────── */
@@ -269,15 +355,17 @@
   display: grid;
   grid-template-columns: repeat(var(--isp-cards-columns, 3), minmax(0, 1fr));
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin: 1.75rem 0;
 }
 
 .isp-card {
-  display: block;
-  padding: 1.1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.15rem 1.2rem;
   background: var(--isp-surface);
   border: 1px solid var(--rp-c-divider);
-  border-radius: var(--rp-radius, 1rem);
+  border-radius: var(--rp-radius);
+  box-shadow: var(--isp-shadow-sm);
   transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
@@ -286,26 +374,54 @@
   text-decoration: none;
 }
 
+.isp-card--link::after {
+  content: '→';
+  position: absolute;
+  top: 1.1rem;
+  right: 1.15rem;
+  color: var(--rp-c-text-4);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s ease;
+}
+
+.isp-card--link {
+  position: relative;
+}
+
 .isp-card--link:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border-color: var(--rp-c-brand-light);
   box-shadow: var(--isp-shadow-hover);
 }
 
+.isp-card--link:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--rp-c-brand);
+}
+
 .isp-card__icon {
-  display: block;
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.35rem;
   line-height: 1;
-  margin-bottom: 0.55rem;
+  border-radius: 11px;
+  background: var(--rp-c-brand-tint);
 }
 
 .isp-card__title {
   display: block;
   font-family: 'Sora', var(--rp-font-family-base);
-  font-size: 0.98rem;
-  font-weight: 650;
+  font-size: 1rem;
+  font-weight: 640;
   color: var(--rp-c-text-1);
   margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
 }
 
 .isp-card__body > :first-child {
@@ -326,47 +442,52 @@
 
 .isp-card__body ul {
   padding-left: 1.1rem;
-  margin: 0.35rem 0 0;
+  margin: 0.4rem 0 0;
+}
+
+.isp-card__body li {
+  margin: 0.15rem 0;
 }
 
 /* ── Pasos ────────────────────────────────────────────────────── */
 .isp-steps {
   counter-reset: isp-step;
-  margin: 1.75rem 0 2.5rem;
-  padding-left: 1.75rem;
-  margin-left: 0.75rem;
-  border-left: 1px solid var(--rp-c-divider);
+  margin: 1.9rem 0 2.5rem;
+  padding-left: 1.9rem;
+  margin-left: 0.85rem;
+  border-left: 2px solid var(--rp-c-divider);
 }
 
 .isp-step {
   position: relative;
   counter-increment: isp-step;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
 }
 
 .isp-step + .isp-step {
-  margin-top: 1.5rem;
+  margin-top: 1.6rem;
 }
 
 .isp-step::before {
   content: counter(isp-step);
   position: absolute;
-  left: -1.75rem;
-  top: 0.15rem;
+  left: -1.9rem;
+  top: 0.05rem;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  border: 1.5px solid var(--rp-c-divider);
-  background: var(--rp-c-bg);
-  outline: 5px solid var(--rp-c-bg);
+  border: 2px solid var(--rp-c-bg);
+  background: var(--rp-c-brand);
+  outline: 4px solid var(--rp-c-bg);
   font-family: 'Sora', var(--rp-font-family-base);
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--rp-c-brand);
+  font-weight: 650;
+  color: #fff;
+  box-shadow: var(--isp-shadow-sm);
 }
 
 .isp-step > :first-child {
@@ -377,31 +498,39 @@
   margin-bottom: 0;
 }
 
+.isp-step h3,
+.isp-step h4 {
+  margin-top: 0;
+}
+
 /* ── Tablas ───────────────────────────────────────────────────── */
 .rspress-doc table {
   display: table;
   width: 100%;
+  margin: 1.6rem 0;
   font-size: 14px;
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid var(--rp-c-divider);
-  border-radius: var(--rp-radius-small, 0.5rem);
+  border-radius: var(--rp-radius-small);
   overflow: hidden;
+  box-shadow: var(--isp-shadow-sm);
 }
 
 .rspress-doc thead th {
   background: var(--rp-c-bg-soft);
   font-family: 'Sora', var(--rp-font-family-base);
   font-size: 12.5px;
-  font-weight: 650;
-  letter-spacing: 0.02em;
+  font-weight: 640;
+  letter-spacing: 0.01em;
   color: var(--rp-c-text-1);
   text-align: left;
+  white-space: nowrap;
 }
 
 .rspress-doc th,
 .rspress-doc td {
-  padding: 0.7rem 0.85rem;
+  padding: 0.72rem 0.9rem;
   border: 0;
   border-bottom: 1px solid var(--rp-c-divider-light);
   vertical-align: top;
@@ -411,41 +540,77 @@
   border-bottom: 0;
 }
 
+.rspress-doc tbody tr {
+  transition: background 0.12s ease;
+}
+
 .rspress-doc tbody tr:hover {
   background: var(--rp-c-bg-soft);
 }
 
-/* El tema envuelve cada tabla en `.rp-table-scroll-container`; forzamos un
-   ancho mínimo para que en móvil se desplace en lugar de comprimir columnas. */
+.rspress-doc td code {
+  white-space: nowrap;
+}
+
+/* En móvil la tabla se desplaza dentro de su contenedor. */
 .rp-table-scroll-container > table {
   min-width: 30rem;
+  box-shadow: none;
 }
 
 /* ── Callouts ─────────────────────────────────────────────────── */
 .rp-callout {
-  border-radius: var(--rp-radius, 1rem);
+  border-radius: var(--rp-radius);
 }
 
 .rp-callout__title {
   font-family: 'Sora', var(--rp-font-family-base);
-  font-weight: 650;
+  font-weight: 640;
   letter-spacing: -0.01em;
+}
+
+/* ── Código ───────────────────────────────────────────────────── */
+.rspress-doc :not(pre) > code {
+  font-size: 0.86em;
+  border-radius: 6px;
 }
 
 /* ── Home ─────────────────────────────────────────────────────── */
 .rp-home-hero__image-img,
 .rp-home-hero__image img {
-  max-width: 190px;
+  max-width: 200px;
   height: auto;
-  filter: drop-shadow(0 18px 46px rgba(124, 109, 250, 0.32));
+  filter: drop-shadow(0 20px 48px rgba(91, 75, 216, 0.3));
 }
 
 .rp-home-hero__title {
   font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
 .rp-home-feature__card {
-  border-radius: var(--rp-radius, 1rem);
+  border-radius: var(--rp-radius);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.rp-home-feature__card--clickable:hover {
+  transform: translateY(-3px);
+}
+
+/* ── Navegación anterior / siguiente ──────────────────────────── */
+.rp-doc-footer__nav .rp-prev-next-page,
+.rp-prev-next-page {
+  border-radius: var(--rp-radius);
+}
+
+/* ── Índice "En esta página" ──────────────────────────────────── */
+.rp-outline__title {
+  font-family: 'Sora', var(--rp-font-family-base);
+  font-size: 12px;
+  font-weight: 680;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--rp-c-text-3);
 }
 
 /* ── Pie de página ────────────────────────────────────────────── */
@@ -453,7 +618,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   text-align: center;
 }
 
@@ -474,13 +639,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.35rem 1.25rem;
+  gap: 0.4rem 1.35rem;
   font-size: 14px;
 }
 
 .isp-footer__contact a {
   color: var(--rp-c-text-2);
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .isp-footer__contact a:hover {
@@ -488,7 +654,7 @@
 }
 
 .isp-footer__copy {
-  margin: 0.2rem 0 0;
+  margin: 0.25rem 0 0;
   font-size: 12.5px;
   color: var(--rp-c-text-4);
 }
@@ -501,13 +667,17 @@
 }
 
 @media (max-width: 640px) {
+  .rspress-doc {
+    font-size: 15px;
+  }
+
   .rspress-doc h1 {
-    font-size: 1.75rem;
+    font-size: 1.8rem;
   }
 
   .rspress-doc h2 {
-    margin-top: 2.25rem;
-    font-size: 1.28rem;
+    margin-top: 2.4rem;
+    font-size: 1.3rem;
   }
 
   .isp-cards {
@@ -518,27 +688,35 @@
     gap: 1rem;
   }
 
-  .isp-fig-row .isp-figure,
-  .isp-figure {
+  .isp-fig-row .isp-figure {
     max-width: 100%;
     flex-basis: 100%;
   }
 
   .isp-steps {
-    padding-left: 1.4rem;
-    margin-left: 0.6rem;
+    padding-left: 1.5rem;
+    margin-left: 0.7rem;
   }
 
   .isp-step::before {
-    left: -1.4rem;
-    width: 24px;
-    height: 24px;
-    font-size: 0.78rem;
+    left: -1.5rem;
+    width: 26px;
+    height: 26px;
+    font-size: 0.8rem;
   }
 
-  .rp-nav__title__logo,
+  .rp-nav__title__logo-image,
   .rp-nav__title img {
     height: 26px;
+  }
+}
+
+/* Menos movimiento si el usuario lo pide. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

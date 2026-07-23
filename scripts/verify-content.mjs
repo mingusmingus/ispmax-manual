@@ -106,8 +106,13 @@ const bag = words => {
 const oldBag = bag(normalize(textOf(oldDom.innerHTML)));
 const newBag = bag(normalize(newText));
 
+/* Erratas del manual original que la migración corrige a propósito: no deben
+   contar como pérdida de contenido. */
+const CORRECTED_TYPOS = new Set(['clienes', 'contimuamos', 'rellenamiento']);
+
 const missingWords = [];
 for (const [w, n] of oldBag) {
+  if (CORRECTED_TYPOS.has(w)) continue;
   const got = newBag.get(w) || 0;
   if (got < n) missingWords.push({ w, n, got });
 }

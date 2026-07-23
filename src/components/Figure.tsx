@@ -6,7 +6,7 @@ export interface FigureProps {
   caption?: string;
   width?: number;
   height?: number;
-  /** Ancho máximo del recorte, tal y como venía en el HTML original. */
+  /** Ancho máximo del recorte (nunca por encima del tamaño real del archivo). */
   max?: string;
   /** `compact`, `start`, `hero` — variantes heredadas del manual original. */
   variant?: string;
@@ -15,8 +15,15 @@ export interface FigureProps {
 }
 
 /**
- * Captura de pantalla del manual. Mantiene proporción, hace lazy-load y se
- * integra con el zoom nativo de Rspress (medium-zoom).
+ * Captura de pantalla del manual.
+ *
+ * Reglas de tamaño:
+ *  · nunca se amplía por encima de su ancho natural (`width`);
+ *  · si se indicó un `max`, se respeta como tope adicional;
+ *  · conserva la proporción con `aspect-ratio` para no provocar saltos de
+ *    maquetación mientras carga.
+ *
+ * Se integra con el zoom nativo de Rspress (medium-zoom).
  */
 export default function Figure({
   src,
@@ -42,8 +49,18 @@ export default function Figure({
 
   if (inline) return img;
 
-  const classes = ['isp-figure', ...variant.split(/\s+/).filter(Boolean).map(v => `isp-figure--${v}`)];
-  const style = max ? ({ '--isp-figure-max': max } as CSSProperties) : undefined;
+  const variants = variant.split(/\s+/).filter(Boolean);
+  const classes = ['isp-figure', ...variants.map(v => `isp-figure--${v}`)];
+
+  // Tope de ancho: el menor entre `max` y el ancho real. Nunca amplía.
+  const caps: string[] = [];
+  if (width) caps.push(`${width}px`);
+  if (max) caps.push(max);
+  const maxWidth = caps.length ? (caps.length === 1 ? caps[0] : `min(${caps.join(', ')})`) : undefined;
+
+  const style: CSSProperties = {};
+  if (maxWidth) style['--isp-figure-max' as string] = maxWidth;
+  if (width && height) style['--isp-figure-ratio' as string] = `${width} / ${height}`;
 
   return (
     <figure className={classes.join(' ')} style={style}>

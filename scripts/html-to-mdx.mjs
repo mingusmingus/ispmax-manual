@@ -10,7 +10,7 @@
  *
  *   node scripts/html-to-mdx.mjs
  */
-import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse } from 'node-html-parser';
@@ -18,6 +18,43 @@ import { parse } from 'node-html-parser';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const HTML = path.join(root, 'index.html');
 const OUT_DIR = path.join(root, 'docs', 'guia');
+const IMG_DIR = path.join(root, 'assets', 'imgs');
+
+/* ── Dimensiones reales de cada imagen ──────────────────────────────────────
+   Lee el ancho/alto sin dependencias, directamente de la cabecera del PNG o
+   WEBP. Se usa para que ninguna figura se muestre más grande que el archivo
+   original (el HTML antiguo tenía `max-width` mayores que la propia imagen y
+   por eso algunas capturas salían ampliadas y borrosas).                     */
+function imageSize(file) {
+  const b = readFileSync(file);
+  if (b[0] === 0x89 && b[1] === 0x50) return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) }; // PNG
+  if (b.slice(0, 4).toString() === 'RIFF' && b.slice(8, 12).toString() === 'WEBP') {
+    const fmt = b.slice(12, 16).toString();
+    if (fmt === 'VP8 ') return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+    if (fmt === 'VP8L') {
+      const n = b.readUInt32LE(21);
+      return { w: (n & 0x3fff) + 1, h: ((n >> 14) & 0x3fff) + 1 };
+    }
+    if (fmt === 'VP8X') {
+      return {
+        w: ((b[24] | (b[25] << 8) | (b[26] << 16)) & 0xffffff) + 1,
+        h: ((b[27] | (b[28] << 8) | (b[29] << 16)) & 0xffffff) + 1,
+      };
+    }
+  }
+  return null;
+}
+
+const DIMS = new Map();
+for (const f of existsSync(IMG_DIR) ? readdirSync(IMG_DIR) : []) {
+  if (!/\.(png|webp|jpe?g|gif)$/i.test(f)) continue;
+  try {
+    const size = imageSize(path.join(IMG_DIR, f));
+    if (size) DIMS.set(f.toLowerCase(), size);
+  } catch {
+    /* si no se puede leer, la figura simplemente no lleva width/height */
+  }
+}
 
 /* ───────────────────────── Estructura del manual ─────────────────────────
    Orden y agrupación calcados del `<nav id="sidebar">` original.
@@ -188,6 +225,42 @@ function resolveSrc(src) {
   return `/${fixed}`;
 }
 
+/* Textos alternativos correctos para las capturas de la sección Plantillas,
+   donde el HTML original repetía "Listado de routers ISPMAX" en imágenes que
+   no tienen nada que ver con routers. Descriptivos y útiles para el buscador. */
+const ALT_OVERRIDES = {
+  'gestion.png': 'Menú Gestión de Clientes en ISPMAX',
+  'imp.png': 'Sección Redes IPv4 en ISPMAX',
+  'impex.webp': 'Botón Descargar Excel de la plantilla',
+  'impex.png': 'Cargar el archivo Excel de redes',
+  'exx.png': 'Plantilla Excel de redes IPv4 rellenada',
+};
+
+/** Devuelve un `alt` útil: corrige los heredados incorrectos y evita vacíos. */
+function improveAlt(raw, file, caption) {
+  if (ALT_OVERRIDES[file]) return attr(ALT_OVERRIDES[file]);
+  const alt = raw ? attr(raw) : '';
+  if (alt && alt.toLowerCase() !== 'listado de routers ispmax') return alt;
+  return caption || attr('Captura de ISPMAX');
+}
+
+/* Erratas heredadas del manual original (se corrigen en los pies de figura y
+   en el texto). Solo cadenas inequívocas, para no alterar el sentido. */
+const TYPO_FIXES = [
+  [/\bClienes\b/g, 'Clientes'],
+  [/\bContimuamos\b/g, 'Continuamos'],
+  [/\bGestion de Clientes\b/g, 'Gestión de Clientes'],
+  [/\bRellenamiento del Excel\b/gi, 'Plantilla Excel rellenada'],
+];
+
+function fixTypos(text) {
+  let t = text;
+  for (const [re, to] of TYPO_FIXES) t = t.replace(re, to);
+  return t;
+}
+
+const improveCaption = text => fixTypos(text);
+
 /* ─────────────────────────── conversión inline ─────────────────────────── */
 
 function inline(node, ctx = {}) {
@@ -244,9 +317,9 @@ function figureOf(el) {
   if (!img) return '';
   const cap = el.querySelector('figcaption');
   const style = el.getAttribute('style') || '';
-  const max =
-    /--figure-max:\s*([\d.]+px)/.exec(style)?.[1] ||
-    /max-width:\s*([\d.]+px)/.exec(style)?.[1] ||
+  const rawMax =
+    /--figure-max:\s*([\d.]+)px/.exec(style)?.[1] ||
+    /max-width:\s*([\d.]+)px/.exec(style)?.[1] ||
     null;
 
   const variants = classesOf(el)
@@ -257,14 +330,32 @@ function figureOf(el) {
     warn(`figcaption con marcado interno (se conserva como texto): "${squash(cap.text).slice(0, 60)}"`);
   }
 
+  const srcAttr = decode(img.getAttribute('src')).trim().replace(/^\.?\//, '');
+  const file = (IMG_CASE_FIX[srcAttr] || srcAttr).split('/').pop().toLowerCase();
+  const dims = DIMS.get(file) || null;
+
+  // Ancho efectivo: el tope que pidiera el HTML pero NUNCA por encima del
+  // tamaño real del archivo. Así ninguna captura se amplía ni se ve borrosa.
+  const declaredMax = rawMax ? Math.round(parseFloat(rawMax)) : null;
+  let effectiveMax = declaredMax;
+  if (dims) effectiveMax = Math.min(dims.w, declaredMax ?? dims.w);
+
+  const captionText = cap ? improveCaption(attr(cap.text)) : null;
+  const altText = improveAlt(img.getAttribute('alt'), file, captionText);
+
   const props = [
     `src="${resolveSrc(img.getAttribute('src'))}"`,
-    `alt="${attr(img.getAttribute('alt') || squash(cap?.text || 'Captura de ISPMAX'))}"`,
+    `alt="${altText}"`,
   ];
-  if (cap) props.push(`caption="${attr(cap.text)}"`);
-  if (img.getAttribute('width')) props.push(`width={${img.getAttribute('width')}}`);
-  if (img.getAttribute('height')) props.push(`height={${img.getAttribute('height')}}`);
-  if (max) props.push(`max="${max}"`);
+  if (captionText) props.push(`caption="${captionText}"`);
+  if (dims) {
+    props.push(`width={${dims.w}}`);
+    props.push(`height={${dims.h}}`);
+  } else {
+    if (img.getAttribute('width')) props.push(`width={${img.getAttribute('width')}}`);
+    if (img.getAttribute('height')) props.push(`height={${img.getAttribute('height')}}`);
+  }
+  if (effectiveMax) props.push(`max="${effectiveMax}px"`);
   if (variants.length) props.push(`variant="${variants.join(' ')}"`);
 
   return `<Figure ${props.join(' ')} />`;
@@ -556,17 +647,17 @@ for (const [index, id] of ORDER.entries()) {
   const dom = parse(chunk, { blockTextElements: { script: false, style: false } });
 
   const titleEl = dom.querySelector('.section-title') || dom.querySelector('h1') || dom.querySelector('h2');
-  const title = titleEl ? squash(titleEl.text).trim() : id;
+  const title = fixTypos(titleEl ? squash(titleEl.text).trim() : id);
   const descEl = dom.querySelector('.section-desc') || dom.querySelector('p');
-  const description = descEl ? squash(decode(descEl.text)).trim().slice(0, 180) : '';
+  const description = descEl ? fixTypos(squash(decode(descEl.text)).trim()).slice(0, 180) : '';
 
   let content = blocksOf(dom, { headingLevel: 2 });
 
   imagesEmitted += (content.match(/<Figure /g) || []).length;
   tablesEmitted += (content.match(/^\| ---/gm) || []).length;
 
-  // limpiezas finales
-  content = content
+  // limpiezas finales + corrección de erratas heredadas
+  content = fixTypos(content)
     .replace(/\n{3,}/g, '\n\n')
     .replace(/[ \t]+$/gm, '')
     .trim();
