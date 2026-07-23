@@ -65,6 +65,7 @@ tests/
 playground/
 sandbox/
 draft/
+ideas.txt
 
 # Capturas de pantalla sueltas que no van dentro de assets/imgs/
 screenshot*.png
