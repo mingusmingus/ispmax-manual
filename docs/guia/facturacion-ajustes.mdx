@@ -1,0 +1,26 @@
+---
+title: "Facturación"
+description: "Configura el comportamiento del módulo de facturación: qué se genera automáticamente, qué se exige al anular, y cómo se manejan los saldos y excedentes de los clientes."
+head:
+  - - meta
+    - name: keywords
+      content: "facturacion ajustes suspendidos abono anular motivo saldo excedente siguiente factura toggles configuracion"
+---
+
+<Kicker>Ajustes</Kicker>
+
+# Facturación
+
+<Lead>Configura el comportamiento del módulo de facturación: qué se genera automáticamente, qué se exige al anular, y cómo se manejan los saldos y excedentes de los clientes.</Lead>
+
+<Figure src="/assets/imgs/facturacion-ajustes.webp" alt="Ajustes de Facturación" caption="Opciones de comportamiento del módulo de facturación." width={1389} max="480px" variant="compact start" />
+
+| Opción | Qué hace |
+| --- | --- |
+| **Crear facturas a suspendidos** | Permite que el sistema genere facturas aunque el cliente tenga el servicio suspendido. Útil para mantener el registro de deuda activo durante la suspensión. |
+| **Crear factura por cada abono** | Genera un comprobante individual por cada pago parcial registrado, en lugar de acumularlos en una sola factura. |
+| **Pedir motivo al anular factura/pago** | Al intentar anular una factura o pago, el sistema abre un campo para ingresar la razón de la anulación. |
+| **Motivo de anulación obligatorio** | Impide completar la anulación si no se ha ingresado el motivo. Trabaja en conjunto con la opción anterior. |
+| **Marcar por defecto pasar saldo/excedente a la siguiente factura** | Preselecciona automáticamente la opción de trasladar el saldo restante o excedente a la próxima factura del cliente. Agiliza el proceso de cobro sin tener que activar la casilla manualmente en cada pago. |
+
+<SearchTerms terms="facturacion ajustes suspendidos abono anular motivo saldo excedente siguiente factura toggles configuracion" />

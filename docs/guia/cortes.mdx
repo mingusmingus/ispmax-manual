@@ -1,0 +1,179 @@
+---
+title: "Configuración de cortes"
+description: "Define cuándo y cómo el sistema suspende los servicios con facturas vencidas. ISPMAX ofrece dos caminos que se complementan: el corte por cliente, que fija las condiciones individu"
+head:
+  - - meta
+    - name: keywords
+      content: "configuracion cortes dias habilitados horarios automatico mikrotik smartolt adminolt suspender clientes gracia reintentos configurar cortes de global router alcance guardar cambios activar manual por cliente individual general recordatorios whatsapp correo notificaciones facturar tercero segmentar sectores dia pago postpago prepago comprobante contrato"
+---
+
+<Kicker>Ajustes — módulo clave</Kicker>
+
+# Configuración de cortes
+
+<Lead>Define cuándo y cómo el sistema suspende los servicios con facturas vencidas. ISPMAX ofrece dos caminos que se complementan: el **corte por cliente**, que fija las condiciones individuales de cada servicio, y el **corte general**, que define los días y horarios en que el sistema ejecuta el proceso para todos.</Lead>
+
+:::tip Consejo
+
+**¿Cuál usar?** Los dos, y en ese orden. Primero configura las condiciones de cada cliente (Método 1); después ajusta cuándo se dispara el proceso (Método 2). El corte general respeta lo que definiste por cliente: día de pago, días de gracia y meses vencidos.
+
+:::
+
+---
+
+## Método 1 · Corte por cliente <Badge type="tip">Recomendado</Badge>
+
+<Lead>Configurar el corte cliente por cliente te da control total: cada servicio tiene su día de pago, sus días de gracia y su propio canal de aviso. Es más trabajo inicial, pero evita sorpresas y te permite ajustar casos particulares sin tocar la configuración global.</Lead>
+
+:::warning Atención
+
+**Segmenta por sectores.** Agrupa a los clientes por zona y escalona los días de corte y los recordatorios. Enviar cientos de mensajes de WhatsApp el mismo día puede provocar el bloqueo del número por parte de Meta. Como referencia, no superes los **60 envíos diarios** por número.
+
+:::
+
+<Steps>
+<Step>
+
+Entra a **Gestión de Clientes › Clientes**.
+
+<Figure src="/assets/imgs/cortes-cliente-menu.webp" alt="Menú Clientes" caption="Acceso al listado de clientes." width={311} height={67} max="210px" variant="compact start" />
+
+</Step>
+<Step>
+
+Ubica al cliente con los filtros superiores (**Por Router**, **Estado**, **Red**, **Plan**, **Caja NAP**) o con el buscador, y pulsa el ícono del lápiz **Editar** en la columna Acciones.
+
+<Figure src="/assets/imgs/cortes-cliente-listado.webp" alt="Listado de clientes con filtros" caption="Listado de clientes: filtros por router, estado, red, plan y caja NAP." width={1575} height={375} />
+
+<Figure src="/assets/imgs/cortes-cliente-boton-editar.webp" alt="Botón Editar del cliente" caption="Ícono Editar en la columna Acciones." width={146} height={88} max="130px" variant="compact start" />
+
+</Step>
+<Step>
+
+Dentro del cliente, abre **Facturación / Pagos**.
+
+<Figure src="/assets/imgs/cortes-cliente-boton-facturacion.webp" alt="Botón Facturación / Pagos" caption="Acceso a la ficha de facturación del cliente." width={272} height={54} max="190px" variant="compact start" />
+
+</Step>
+<Step>
+
+La pestaña **Facturas** se abre por defecto. Antes de tocar la configuración, revisa aquí el estado real del cliente: vencimiento, total, abonado y estado de cada comprobante. El corte se ejecuta en función de estas facturas.
+
+<Figure src="/assets/imgs/cortes-cliente-pestana-facturas.webp" alt="Pestaña Facturas del cliente" caption="Pestaña Facturas: vencimiento, montos, estado y acciones por comprobante." width={1459} height={322} />
+
+</Step>
+<Step>
+
+Pasa a la pestaña **Configuración**. Aquí están todos los parámetros que determinan cuándo se corta el servicio de este cliente. Usa el selector de la esquina superior derecha para elegir el servicio si el cliente tiene más de uno.
+
+<Figure src="/assets/imgs/cortes-cliente-configuracion.webp" alt="Pestaña Configuración del servicio" caption="Pestaña Configuración: facturación, notificaciones y facturación a tercero." width={1459} height={787} />
+
+| Campo | Qué define |
+| --- | --- |
+| **Día Pago** | Día del mes en que vence la factura de este servicio. |
+| **Tipo** | Postpago (Vencido) cobra el mes ya consumido; Prepago cobra por adelantado. |
+| **Tipo Impuesto** | Cómo se calcula el impuesto sobre el valor del plan (ej. Impuestos incluido). |
+| **Días de gracia** | Tolerancia después del vencimiento antes de aplicar el corte. Con `0 Día` el corte procede apenas la factura vence. |
+| **Aplicar Corte** | Cuánta deuda acumulada dispara la suspensión (ej. `1 Mes Vencido`). |
+| **Tipo Comprobante** | Recibo o Factura. Determina qué documento genera el sistema para este servicio. |
+| **Creación Anticipada** | Con cuántos días de anticipación se genera la próxima factura. Ver [Facturación automática](/guia/facturacion-automatica). |
+| **N° de contrato** | Número de contrato asociado al servicio. |
+| **Dirección en factura** | Qué dirección se imprime en el comprobante: la principal o la del servicio. |
+
+</Step>
+<Step>
+
+En **Notificaciones**, abre **Recordatorios de pago** y elige el canal de aviso: <Badge type="info" outline>Ninguno</Badge>, <Badge type="info">Correo</Badge> o <Badge type="tip">WhatsApp</Badge>.
+
+<Figure src="/assets/imgs/cortes-cliente-canal-recordatorio.webp" alt="Selector de canal de recordatorio" caption="Canales disponibles para el recordatorio de pago." width={490} height={196} max="280px" variant="compact start" />
+
+Al elegir un canal se habilitan hasta **tres recordatorios** independientes (#1, #2 y #3). Cada uno se programa por separado, lo que permite avisar antes del vencimiento, el mismo día y antes del corte.
+
+</Step>
+<Step>
+
+Si el cliente necesita que la factura salga a nombre de otra persona o empresa, activa **Usar datos diferentes para facturar** en **Facturar a tercero** y completa los datos del titular. Termina con **Guardar**.
+
+<Figure src="/assets/imgs/cortes-cliente-recordatorios-tercero.webp" alt="Recordatorios y facturación a tercero" caption="Recordatorios #1 a #3 activos y datos de facturación a tercero." width={1385} height={696} />
+
+- **Tipo identificación / Identificación** — documento del tercero. Obligatorio.
+- **Razón social / Nombre** — a quién se emite el comprobante. Obligatorio.
+- **Dirección, Celular, Email** — datos de contacto y envío. Opcionales.
+
+</Step>
+</Steps>
+
+:::tip Consejo
+
+Los cambios guardados aquí solo afectan a **este servicio**. Si necesitas aplicar el mismo día de pago o los mismos días de gracia a muchos clientes a la vez, usa [Cambios masivos](/guia/base-datos) en Base de datos.
+
+:::
+
+---
+
+## Método 2 · Corte general
+
+<Lead>Es la vía global: no discrimina por cliente, sino que define cuándo el sistema recorre la cartera y suspende a todo el que cumpla las condiciones de corte. Se configura desde **Ajustes › Configuración de cortes** y puede aplicarse a toda la red o a un router en particular.</Lead>
+
+:::warning Atención
+
+**El corte se ejecuta según las facturas vencidas.** Revisa siempre [Facturas](/guia/facturas) y [Pagos registrados](/guia/pagos-registrados) antes de un corte programado: un pago que no alcanzó a registrarse suspende a un cliente que ya pagó. Ajusta estas opciones con criterio y conociendo su alcance, porque afectan a toda la cartera a la vez.
+
+:::
+
+<Steps>
+<Step>
+
+Entra al apartado **Ajustes**.
+
+<Figure src="/assets/imgs/cortes-general-menu-ajustes.webp" alt="Menú Ajustes" caption="Acceso al panel de ajustes." width={321} height={55} max="215px" variant="compact start" />
+
+</Step>
+<Step>
+
+Selecciona **Configuración de Cortes**.
+
+<Figure src="/assets/imgs/cortes-general-acceso.webp" alt="Acceso a Configuración de Cortes" caption="Ícono Configuración de Cortes dentro del panel de ajustes." width={195} height={187} max="130px" variant="compact start" />
+
+</Step>
+<Step>
+
+Define los **días habilitados**, los **horarios** de cada día y los **reintentos automáticos**. Elige también sobre qué plataformas se aplica el corte: Mikrotik, SmartOLT y/o AdminOLT.
+
+<Figure src="/assets/imgs/cortes-general-panel.webp" alt="Panel de configuración de cortes" caption="Días habilitados, configurar cortes de, horarios y reintentos automáticos." width={1344} height={737} />
+
+:::tip Consejo
+
+Los cuatro bloques comparten un solo botón **Guardar Cambios**, el de **Configurar cortes de**. Guarda todo junto: días, horarios y reintentos.
+
+:::
+
+</Step>
+<Step>
+
+En **Configurar cortes de** eliges a qué alcance aplica lo que acabas de definir.
+
+<Figure src="/assets/imgs/cortes-general-selector-router.webp" alt="Selector de router en Configurar cortes de" caption="Selector de alcance: configuración global o por router." width={641} height={297} max="400px" variant="compact start" />
+
+- **Global (por defecto)** — aplica a todos los routers que no tengan una configuración propia.
+- **Un router específico** — personaliza los cortes de ese equipo y deja al resto con la configuración global. Útil para escalonar cortes por zona.
+
+</Step>
+</Steps>
+
+| Bloque | Qué controla |
+| --- | --- |
+| **Días habilitados para cortes** | Define qué días de la semana el sistema puede ejecutar cortes. |
+| **Configurar cortes de** | Define el alcance de la configuración: **Global** para todos los routers sin ajustes propios, o un **router específico** para personalizar sus cortes. Contiene el botón **Guardar Cambios** que guarda días, horarios y reintentos. |
+| **Horarios de cortes** | Establece la hora exacta en que se ejecuta el corte para cada día habilitado. |
+| **Reintentos automáticos** | Configura cuántas veces el sistema reintenta aplicar el corte si un router no responde, y el tiempo entre cada intento. |
+| **Aplicar cortes en** | Selecciona las plataformas donde se ejecutan los cortes: MikroTik, SmartOLT y/o AdminOLT. |
+| **Aplicar cortes manualmente** | Ejecuta el proceso de forma inmediata, sin esperar al día y horario programados. Respeta el alcance elegido en **Configurar cortes de**, así que puedes procesar un router a la vez en lugar de toda la red. |
+
+:::warning Atención
+
+Cambiar los días o la hora de cortes afecta a todos los clientes con pagos vencidos. Revisa la configuración con el equipo antes de guardar cambios.
+
+:::
+
+<SearchTerms terms="configuracion cortes dias habilitados horarios automatico mikrotik smartolt adminolt suspender clientes gracia reintentos configurar cortes de global router alcance guardar cambios activar manual por cliente individual general recordatorios whatsapp correo notificaciones facturar tercero segmentar sectores dia pago postpago prepago comprobante contrato" />

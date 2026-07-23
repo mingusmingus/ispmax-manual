@@ -1,0 +1,31 @@
+---
+title: "Estados principales"
+head:
+  - - meta
+    - name: keywords
+      content: "estados activo suspendido retirado pagado no pagado pendiente vencido anulado"
+---
+
+<Kicker>Referencia rápida</Kicker>
+
+# Estados principales
+
+<Cards columns={2}>
+<Card title="Estados del cliente / servicio">
+
+- <Badge type="tip">Activo</Badge> Servicio habilitado y operativo.
+- <Badge type="warning">Suspendido</Badge> Servicio pausado por deuda o solicitud.
+- <Badge type="danger">Retirado</Badge> Cliente sin servicio vigente.
+
+</Card>
+<Card title="Estados de pago / factura">
+
+- <Badge type="tip">Pagado</Badge> Factura cancelada en su totalidad.
+- <Badge type="warning">Pendiente</Badge> Factura con pago parcial o estado intermedio. Revisa el detalle antes de anular, cobrar o modificar.
+- <Badge type="danger">No pagado</Badge> Sin ningún pago registrado.
+- <Badge type="info" outline>Anulado</Badge> Documento cancelado, no tiene efecto financiero.
+
+</Card>
+</Cards>
+
+<SearchTerms terms="estados activo suspendido retirado pagado no pagado pendiente vencido anulado" />

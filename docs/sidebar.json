@@ -1,0 +1,219 @@
+[
+  {
+    "sectionHeader": "Inicio",
+    "items": [
+      {
+        "text": "🏠 Introducción",
+        "link": "/guia/inicio"
+      },
+      {
+        "text": "🚀 Primeros pasos",
+        "link": "/guia/primeros-pasos"
+      },
+      {
+        "text": "📊 Dashboard",
+        "link": "/guia/dashboard"
+      }
+    ]
+  },
+  {
+    "sectionHeader": "Uso de Plantilla y Carga de Data",
+    "items": [
+      {
+        "text": "📝 Uso de Plantilla",
+        "link": "/guia/plantilla"
+      },
+      {
+        "text": "📊 Carga de Data",
+        "link": "/guia/carga"
+      }
+    ]
+  },
+  {
+    "sectionHeader": "Gestión de Red",
+    "items": [
+      {
+        "text": "📡 Routers",
+        "link": "/guia/routers"
+      },
+      {
+        "text": "🌐 Redes IPv4",
+        "link": "/guia/redes-ipv4"
+      },
+      {
+        "text": "🌐 Redes IPv6",
+        "link": "/guia/redes-ipv6"
+      },
+      {
+        "text": "📶 Planes de servicio",
+        "link": "/guia/planes"
+      },
+      {
+        "text": "📦 Cajas NAP",
+        "link": "/guia/nap"
+      },
+      {
+        "text": "🗺️ Mapa de red y clientes",
+        "link": "/guia/mapa"
+      },
+      {
+        "text": "🧠 SmartOLT",
+        "link": "/guia/smartolt"
+      },
+      {
+        "text": "🛠️ AdminOLT",
+        "link": "/guia/adminolt"
+      },
+      {
+        "text": "🧩 Servicios personalizados",
+        "link": "/guia/personalizado"
+      }
+    ]
+  },
+  {
+    "sectionHeader": "Gestión de Clientes",
+    "items": [
+      {
+        "text": "👥 Listado de clientes",
+        "link": "/guia/clientes"
+      },
+      {
+        "text": "👤 Detalle de cliente",
+        "link": "/guia/detalle-cliente"
+      },
+      {
+        "text": "🔁 Facturación automática",
+        "link": "/guia/facturacion-automatica"
+      },
+      {
+        "text": "🚦 Estados",
+        "link": "/guia/estados"
+      },
+      {
+        "text": "🎫 Tickets",
+        "link": "/guia/tickets"
+      },
+      {
+        "text": "💲 Saldos / Cargos",
+        "link": "/guia/saldos-cargos"
+      }
+    ]
+  },
+  {
+    "sectionHeader": "Finanzas",
+    "items": [
+      {
+        "text": "🏢 Proveedores",
+        "link": "/guia/proveedores"
+      },
+      {
+        "text": "💳 Registrar pago",
+        "link": "/guia/registrar-pago"
+      },
+      {
+        "text": "📋 Pagos registrados",
+        "link": "/guia/pagos-registrados"
+      },
+      {
+        "text": "🤝 Promesas de pago",
+        "link": "/guia/promesas-pago"
+      },
+      {
+        "text": "🛒 Compras",
+        "link": "/guia/compras"
+      },
+      {
+        "text": "💵 Ingresos / Egresos",
+        "link": "/guia/ingresos-egresos"
+      },
+      {
+        "text": "🧍 Personas",
+        "link": "/guia/personas"
+      },
+      {
+        "text": "🧾 Facturas",
+        "link": "/guia/facturas",
+        "tag": "Clave"
+      },
+      {
+        "text": "💰 Transacciones",
+        "link": "/guia/transacciones"
+      },
+      {
+        "text": "📦 Productos y servicios",
+        "link": "/guia/productos"
+      }
+    ]
+  },
+  {
+    "sectionHeader": "Ajustes",
+    "items": [
+      {
+        "text": "⚙️ Panel de ajustes",
+        "link": "/guia/ajustes"
+      },
+      {
+        "text": "✂️ Configuración de cortes",
+        "link": "/guia/cortes",
+        "tag": "Clave"
+      },
+      {
+        "text": "💳 Facturación",
+        "link": "/guia/facturacion-ajustes"
+      },
+      {
+        "text": "🔌 OLTs",
+        "link": "/guia/olts-ajustes"
+      },
+      {
+        "text": "📄 Logs y plantillas",
+        "link": "/guia/logs-plantillas"
+      },
+      {
+        "text": "📣 Mensajería",
+        "link": "/guia/mensajeria"
+      },
+      {
+        "text": "🔔 Notificaciones",
+        "link": "/guia/notificaciones"
+      },
+      {
+        "text": "👨‍💼 Gestión de personal",
+        "link": "/guia/personal"
+      },
+      {
+        "text": "🔐 Roles, empresa y sucursales",
+        "link": "/guia/roles-empresa"
+      },
+      {
+        "text": "🗄️ Base de datos",
+        "link": "/guia/base-datos"
+      },
+      {
+        "text": "⬆️ Sistema",
+        "link": "/guia/sistema"
+      },
+      {
+        "text": "🏦 Formas de pago",
+        "link": "/guia/formas-pago"
+      }
+    ]
+  },
+  {
+    "sectionHeader": "Referencia",
+    "items": [
+      {
+        "text": "✅ Rutinas diarias",
+        "link": "/guia/rutinas"
+      },
+      {
+        "text": "❓ Preguntas frecuentes",
+        "link": "/guia/faq"
+      },
+      {
+        "text": "📖 Glosario",
+        "link": "/guia/glosario"
+      }
+    ]
+  }
+]

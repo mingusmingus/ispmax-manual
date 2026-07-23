@@ -1,0 +1,36 @@
+---
+title: "AdminOLT"
+description: "AdminOLT es una integración equivalente a SmartOLT para la administración de redes de fibra óptica. Son servicios distintos del mismo mercado; ISPMAX permite conectarse con ambos d"
+head:
+  - - meta
+    - name: keywords
+      content: "adminolt onu configurados olts zonas profiles naps maps api fibra optica"
+---
+
+<Kicker>Integraciones OLT</Kicker>
+
+# AdminOLT
+
+<Lead>AdminOLT es una integración equivalente a SmartOLT para la administración de redes de fibra óptica. Son servicios distintos del mismo mercado; ISPMAX permite conectarse con ambos de forma independiente. La lógica de configuración y uso es la misma que SmartOLT.</Lead>
+
+<Figure src="/assets/imgs/adminolt-onus.webp" alt="AdminOLT ONUs" caption="ONUs configuradas, OLTs y filtros de búsqueda." width={1644} height={517} />
+
+<Figure src="/assets/imgs/adminolt-profiles-api.webp" alt="AdminOLT Profiles y API" caption="Perfiles de velocidad, cajas NAP, mapas y configuración API." width={1649} height={446} />
+
+| Pestaña | Qué permite hacer |
+| --- | --- |
+| **ONUs Configurados** | Consultar y filtrar ONUs por nombre, estado, señal, board, puerto o zona. |
+| **OLTs** | Ver OLTs configuradas: nombre, host/IP, fabricante, modelo, versión SW y perfiles. |
+| **Zonas** | Organizar zonas de cobertura. El nombre debe coincidir con el registrado en AdminOLT. |
+| **Profiles** | Perfiles de descarga y subida disponibles en la plataforma AdminOLT. |
+| **NAPs** | Cajas o puntos de conexión registrados en AdminOLT (número y ODB/Splitter). |
+| **Maps** | Mapas o rutas configuradas: nombre, descripción, marcadores, distancia y fecha. |
+| **API** | Requiere Subdominio y API Key de AdminOLT para establecer la conexión con ISPMAX. |
+
+:::tip Consejo
+
+AdminOLT incluye además **Configuración de reinicio automático de ONUs** (intervalo y hora programable) y **Validación de ONUs**, que cruza servicios de ISPMAX contra AdminOLT y marca como inválidos los que ya no existen en la plataforma.
+
+:::
+
+<SearchTerms terms="adminolt onu configurados olts zonas profiles naps maps api fibra optica" />

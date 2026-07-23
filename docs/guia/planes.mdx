@@ -1,0 +1,43 @@
+---
+title: "Planes de servicio"
+description: "Los planes definen la velocidad, precio e impuestos que se asignan a los servicios de internet de los clientes. Cada plan se asocia a uno o varios routers. El selector Por Router f"
+head:
+  - - meta
+    - name: keywords
+      content: "planes servicio internet velocidad precio descarga subida burst prioridad address list facturacion impuesto iva ice"
+---
+
+<Kicker>Gestión de Red</Kicker>
+
+# Planes de servicio
+
+<Lead>Los planes definen la velocidad, precio e impuestos que se asignan a los servicios de internet de los clientes. Cada plan se asocia a uno o varios routers. El selector **Por Router** filtra el listado.</Lead>
+
+<Figure src="/assets/imgs/planes-listado.webp" alt="Planes de servicio" caption="Listado de planes: velocidades, activos, suspendidos y precio." width={1654} height={458} />
+
+<Figure src="/assets/imgs/planes-facturacion.webp" alt="Facturación del plan" caption="Pestaña Facturación: nombre, descripción, precio e impuestos." width={1546} height={378} />
+
+<Figure src="/assets/imgs/planes-tecnicos.webp" alt="Parámetros técnicos del plan" caption="Pestaña Parámetros Técnicos: velocidades, burst, prioridad y router." width={1546} height={514} />
+
+| Campo | Uso |
+| --- | --- |
+| **Nombre plan** | Nombre comercial visible para operadores y en comprobantes. |
+| **Descripción** | Texto que puede aparecer en la factura del cliente. |
+| **Precio Plan** | Valor mensual neto sin IVA. |
+| **Impuesto IVA / ICE** | Impuestos aplicables según configuración tributaria. |
+| **Descarga / Subida Mbps** | Velocidad máxima del plan. |
+| **Limit At** | Velocidad garantizada mínima. |
+| **Burst Limit** | Velocidad máxima de ráfaga permitida temporalmente. |
+| **Burst Threshold** | Umbral de tráfico desde el cual se activa el burst. |
+| **Burst Time** | Duración máxima de la ráfaga (en segundos). |
+| **Prioridad** | Nivel de prioridad del tráfico en el router frente a otros planes. |
+| **Address List** | Lista personalizada en MikroTik donde se agrupan los clientes del plan (opcional). |
+| **Router** | Equipo o equipos donde aplica este plan. |
+
+:::warning Atención
+
+Modificar velocidades o parámetros técnicos de un plan activo afecta a todos los clientes que lo tienen asignado.
+
+:::
+
+<SearchTerms terms="planes servicio internet velocidad precio descarga subida burst prioridad address list facturacion impuesto iva ice" />

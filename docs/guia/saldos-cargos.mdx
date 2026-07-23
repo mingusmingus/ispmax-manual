@@ -1,0 +1,56 @@
+---
+title: "Saldos / Cargos"
+description: "Desde la pestaña Facturación/Pagos dentro del perfil del cliente se gestionan los pagos de facturas, los saldos a favor o en contra, y los cargos recurrentes manuales."
+head:
+  - - meta
+    - name: keywords
+      content: "saldos cargos factura pago agregar pago importe total saldo restante excedente a favor cargo recurrente abono facturacion pagos"
+---
+
+<Kicker>Gestión de Clientes</Kicker>
+
+# Saldos / Cargos
+
+<Lead>Desde la pestaña **Facturación/Pagos** dentro del perfil del cliente se gestionan los pagos de facturas, los saldos a favor o en contra, y los cargos recurrentes manuales.</Lead>
+
+## Agregar una factura
+
+<Lead>El listado muestra las facturas del cliente con su estado. Desde aquí se puede crear una nueva factura con el botón **Agregar Factura**.</Lead>
+
+<Figure src="/assets/imgs/saldos-agregar-factura.webp" alt="Pestaña Facturación/Pagos — listado de facturas" caption="Listado de facturas del cliente con filtros por tipo y estado, y botón para agregar una nueva factura." width={1468} />
+
+<Figure src="/assets/imgs/saldos-agregar-factura-prueba.webp" alt="Modal nueva factura" caption="Formulario de nueva factura: producto/servicio, tipo de impuesto, tipo de comprobante y confirmación antes de crear." width={1468} />
+
+## Registrar un pago
+
+<Lead>Una factura recién creada aparece con estado **No pagado**. Para registrar un pago, haz clic en el ícono de visto (✓) en la columna Acciones.</Lead>
+
+<Figure src="/assets/imgs/boton-agregar-pago.webp" alt="Botón Agregar Pago" caption="Ícono Agregar Pago en la columna Acciones de la factura." max="160px" variant="compact start" />
+
+En el formulario de pago puedes ingresar el monto total o solo una parte. Si el monto ingresado es **menor** al total de la factura, el saldo restante puede pasarse automáticamente a la siguiente factura activando la opción **Pasar a siguiente factura**.
+
+<Figure src="/assets/imgs/agregar-pago-saldo-restante.webp" alt="Pago parcial — saldo restante" caption="Pago parcial: el saldo restante puede trasladarse a la siguiente factura." max="360px" variant="compact start" />
+
+Para pagar el total de la factura en un solo paso, activa el toggle **Pagar Importe Total**. Al desactivarlo puedes ingresar un monto personalizado.
+
+<Figure src="/assets/imgs/boton-importe-total.webp" alt="Toggle Pagar Importe Total" caption="Toggle para pagar el importe total de la factura de un solo golpe." max="260px" variant="compact start" />
+
+Si el monto ingresado es **mayor** al total de la factura, el excedente queda a favor del cliente. Activando **Acreditar a siguiente factura**, ese valor se descuenta automáticamente de la próxima factura.
+
+<Figure src="/assets/imgs/excedente-a-favor.webp" alt="Excedente a favor del cliente" caption="Excedente a favor: el monto extra puede acreditarse a la siguiente factura del cliente." max="360px" variant="compact start" />
+
+## Cargos recurrentes
+
+<Lead>La pestaña **Cargos** muestra los cargos recurrentes asignados al cliente, su tipo de pago, monto, estado y las facturas que han generado.</Lead>
+
+<Figure src="/assets/imgs/seccion-cargos.webp" alt="Sección Cargos" caption="Listado de cargos recurrentes: número, tipo de pago, monto, cuotas, tipo de factura, estado y acciones." width={1468} />
+
+Para agregar un cargo manual, haz clic en **Agregar Cargo Recurrente**. Puedes definir el tipo de pago, el tipo de factura, los productos o servicios a incluir, impuestos y tipo de comprobante.
+
+<Figure src="/assets/imgs/agregar-cargo-recurrente.webp" alt="Formulario agregar cargo recurrente" caption="Formulario para agregar un cargo recurrente manual con producto/servicio, impuestos y comprobante." width={1468} />
+
+Dentro del mismo formulario, el botón **Agregar Saldo** permite registrar un ajuste directo al cliente: elige **A favor** para aplicar un descuento, o **En contra** para registrar un cargo pendiente. Puedes añadir una descripción opcional.
+
+<Figure src="/assets/imgs/agregar-saldo-favor-contra.webp" alt="Agregar saldo a favor o en contra" caption="Modal para registrar un saldo: a favor (descuento) o en contra (cargo) del cliente." max="340px" variant="compact start" />
+
+<SearchTerms terms="saldos cargos factura pago agregar pago importe total saldo restante excedente a favor cargo recurrente abono facturacion pagos" />

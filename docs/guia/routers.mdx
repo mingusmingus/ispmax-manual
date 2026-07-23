@@ -1,0 +1,93 @@
+---
+title: "Routers"
+description: "Permite registrar y administrar los equipos MikroTik conectados al sistema. Desde aquí se controla la comunicación entre ISPMAX y cada router, y se gestionan los clientes asociados"
+head:
+  - - meta
+    - name: keywords
+      content: "routers mikrotik api reparar comprobar conexion migrar clientes amarre masivo desactivar editar agregar"
+---
+
+<Kicker>Gestión de Red</Kicker>
+
+# Routers
+
+<Lead>Permite registrar y administrar los equipos MikroTik conectados al sistema. Desde aquí se controla la comunicación entre ISPMAX y cada router, y se gestionan los clientes asociados a cada uno.</Lead>
+
+<Figure src="/assets/imgs/routers-listado.webp" alt="Listado de routers ISPMAX" caption="Listado de routers: columnas, estados y botones de acción." width={1634} height={308} />
+
+## Columnas del listado
+
+| Columna | Descripción |
+| --- | --- |
+| **Nombre Router** | Nombre identificador del equipo dentro de ISPMAX. |
+| **IP / Host** | Dirección IP o nombre de host usado para conectarse al router. |
+| **Total Clientes** | Cantidad de clientes asignados a ese router. |
+| **Versión RouterOS** | Versión del sistema operativo MikroTik instalada. |
+| **Control Velocidad** | Método de gestión de ancho de banda (ej. Colas Simples). |
+| **Estado** | <Badge type="tip">Activo</Badge> disponible · <Badge type="danger">Inactivo</Badge> deshabilitado. |
+
+## Acciones disponibles por router
+
+<FigRow>
+<Figure src="/assets/imgs/routers-acciones.webp" alt="Acciones de router" caption="Reparar, comprobar conexión, migrar clientes, amarre masivo y desactivar." width={298} height={80} max="298px" variant="compact" />
+<Figure src="/assets/imgs/routers-reparar-todos.webp" alt="Reparar todos e historial" caption="Opciones generales: reparar todos los routers activos e historial de migraciones." width={440} height={82} max="440px" variant="compact" />
+</FigRow>
+
+| Acción | Qué hace | Cuándo usarla |
+| --- | --- | --- |
+| **✏️ Editar** | Modifica nombre, IP/host, credenciales API, versión, control de velocidad, sucursal y más. | Cuando cambió la IP, credenciales o configuración del equipo. |
+| **⚙️ Reparar** | Vuelve a sincronizar los clientes de ISPMAX con el router MikroTik: recrea colas de velocidad y reubica IPs en listas. No reinicia el router físicamente; opera solo a través de la API. | Después de cambios en planes, IPs, clientes o estados de servicio que requieren resincronización. |
+| **📶 Comprobar conexión** | Verifica que ISPMAX puede comunicarse con el router vía API. | Antes de operaciones masivas o después de cambiar credenciales. |
+| **↩️ Migrar clientes** | Traslada todos los clientes de un router origen a un router destino. | Al reemplazar un equipo o reorganizar la red. |
+| **🔗 Amarre masivo** | Aplica restricción IP/MAC a todos los clientes activos y en línea del router. Solo el equipo con la IP y MAC registradas puede usar el servicio. | Redes que operan con control estricto por IP y dirección MAC. |
+| **✕ Desactivar** | Inhabilita el router en el sistema. Puede reactivarse con el ícono de verificación. | Cuando el equipo ya no se gestiona desde ISPMAX. |
+
+## Opciones generales del listado
+
+<Cards columns={3}>
+<Card title="Reparar todos">
+
+Ejecuta la sincronización en todos los routers activos de forma simultánea. Solicita confirmación antes de proceder.
+
+</Card>
+<Card title="Historial de migraciones">
+
+Registro de todas las migraciones de clientes entre routers realizadas en el sistema.
+
+</Card>
+<Card title="Agregar router">
+
+Abre el formulario para registrar un nuevo equipo con todos sus parámetros de conexión y configuración.
+
+</Card>
+</Cards>
+
+:::details Formulario Editar / Agregar router — campos
+
+<Figure src="/assets/imgs/routers-formulario.webp" alt="Formulario router" caption="Formulario router" width={1468} height={600} />
+
+| Campo | Descripción |
+| --- | --- |
+| **Nombre Router** | Nombre identificador del router en ISPMAX. |
+| **Ubicación** | Coordenadas geográficas (longitud, latitud) del equipo. |
+| **Versión RouterOS** | Versión del sistema MikroTik utilizada por el router. |
+| **Control de velocidad** | Método de gestión de ancho de banda: Colas Simples u otro disponible. |
+| **Soporte PPPoE** | Activa o desactiva el soporte PPPoE en este router. |
+| **Sucursal** | Sucursal del ISP a la que pertenece este equipo. |
+| **Detrás de NAT/Docker** | Indica si el router opera detrás de NAT o en entorno Docker. |
+| **Usuario (API)** | Usuario configurado en MikroTik para la conexión API. |
+| **Contraseña (API)** | Contraseña del usuario API. |
+| **Puerto API** | Puerto habilitado en MikroTik para la API (por defecto 8728). |
+| **Seguridad alterna** | Configuración de seguridad adicional si aplica. |
+| **IP / Host** | Dirección IP pública o nombre de host del router. |
+| **Puerto SSL** | Puerto para conexión cifrada con API SSL. |
+
+:::
+
+:::danger Precaución
+
+**Precaución:** las acciones Reparar, Migrar clientes y Amarre masivo afectan múltiples clientes simultáneamente. Deben ejecutarse únicamente por personal técnico autorizado.
+
+:::
+
+<SearchTerms terms="routers mikrotik api reparar comprobar conexion migrar clientes amarre masivo desactivar editar agregar" />

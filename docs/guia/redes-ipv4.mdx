@@ -1,0 +1,43 @@
+---
+title: "Redes IPv4"
+description: "Permite registrar y administrar los rangos de direcciones IP que el ISP utiliza para asignar a sus clientes. Cada red se asocia a un router específico. El selector Router filtra el"
+head:
+  - - meta
+    - name: keywords
+      content: "redes ipv4 cidr router uso ips excel importar exportar ocultar columnas nuevo agregar"
+---
+
+<Kicker>Gestión de Red</Kicker>
+
+# Redes IPv4
+
+<Lead>Permite registrar y administrar los rangos de direcciones IP que el ISP utiliza para asignar a sus clientes. Cada red se asocia a un router específico. El selector **Router** filtra el listado para mostrar únicamente las redes del router seleccionado.</Lead>
+
+<Figure src="/assets/imgs/ipv4-listado.webp" alt="Redes IPv4" caption="Listado de redes IPv4: filtro por router, columnas y formulario para crear una nueva red." width={1611} height={272} />
+
+| Columna | Descripción |
+| --- | --- |
+| **Nombre** | Etiqueta descriptiva de la red (ej. RED ISP - FIBRA). |
+| **Red** | Dirección base del rango (ej. `10.10.6.0`). |
+| **Uso IPs** | Porcentaje y cantidad de IPs ocupadas sobre el total disponible. |
+| **CIDR** | Máscara de subred en notación CIDR (ej. /24, /23). |
+| **Router** | Equipo al que pertenece esta red. |
+| **Estado** | <Badge type="tip">Activo</Badge> disponible · <Badge type="danger">Inactivo</Badge> deshabilitado. |
+
+:::details Importar, exportar y ocultar columnas
+
+<Callout type="warning" title="Atención">
+
+La importación y exportación Excel es exclusiva para usuarios con conocimiento técnico avanzado.
+
+</Callout>
+
+<Figure src="/assets/imgs/ipv4-excel-menu.webp" alt="Excel redes IPv4" caption="Excel redes IPv4" width={193} height={198} max="220px" variant="compact start" />
+
+- **Importar Excel:** carga redes IPv4 en bloque desde un archivo con el formato de plantilla ISPMAX.
+- **Descargar Plantilla:** entrega el formato base con columnas: Nombre, Red, Clase (A/B/C), CIDR, Router.
+- **Exportar Redes:** descarga el listado actual en formato Excel.
+
+:::
+
+<SearchTerms terms="redes ipv4 cidr router uso ips excel importar exportar ocultar columnas nuevo agregar" />

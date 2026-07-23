@@ -1,0 +1,53 @@
+---
+title: "Logs y plantillas"
+description: "Logs permite revisar el historial de procesos y cambios del sistema. Plantillas permite personalizar los textos que ISPMAX usa para comunicarse con clientes y técnicos."
+head:
+  - - meta
+    - name: keywords
+      content: "logs plantillas recordatorio pago bienvenida aviso pagos recibos impresion tickets contrato cargos recurrentes variables"
+---
+
+<Kicker>Ajustes</Kicker>
+
+# Logs y plantillas
+
+<Lead>**Logs** permite revisar el historial de procesos y cambios del sistema. **Plantillas** permite personalizar los textos que ISPMAX usa para comunicarse con clientes y técnicos.</Lead>
+
+<Figure src="/assets/imgs/logs-historial.webp" alt="Logs historial" caption="Historial del proceso de cortes con fecha, hora y estado de cada ejecución." width={973} height={428} />
+
+<Figure src="/assets/imgs/plantillas-recordatorio.webp" alt="Plantilla recordatorio de pago" caption="Plantilla de recordatorio: variables disponibles, horarios y opciones de envío." width={1596} height={808} />
+
+## Variables disponibles en plantillas
+
+Las variables son palabras entre llaves que el sistema reemplaza automáticamente por el dato real del cliente al momento del envío.
+
+| Variable | Se reemplaza por |
+| --- | --- |
+| `{cliente}` | Nombre del cliente. |
+| `{empresa}` | Nombre de la empresa. |
+| `{plan}` | Plan de internet contratado. |
+| `{corte}` | Fecha de corte o vencimiento. |
+| `{total}` | Valor pendiente de pago. |
+| `{contrato}` | Número o nombre del contrato. |
+| `{fecha_contrato}` | Fecha del contrato. |
+
+## Plantillas disponibles
+
+| Plantilla | Uso |
+| --- | --- |
+| **Recordatorio de pago** | Mensajes automáticos para recordar deudas o fechas próximas de vencimiento. Permite configurar hasta 3 horarios de envío y si se suma el día de gracia. |
+| **Mensaje de bienvenida** | Texto enviado automáticamente a nuevos clientes al activar su servicio. |
+| **Aviso de pagos recibidos** | Confirmación de pago enviada al cliente cuando se registra un cobro. |
+| **Formato de impresión de pagos** | Diseño del comprobante impreso que se entrega al cliente. |
+| **Tickets** | Mensajes relacionados con la apertura, seguimiento o cierre de tickets de soporte. |
+| **Aviso de contrato** | Textos asociados a la firma o renovación de contratos. |
+| **Plantilla documento** | Formato de documento genérico para otros usos internos. |
+| **Cargos recurrentes** | Mensajes o formatos para cobros periódicos adicionales. |
+
+:::tip Consejo
+
+Todas las plantillas son editables. Usa solo las variables indicadas para cada tipo de mensaje; no todas las plantillas comparten las mismas variables disponibles.
+
+:::
+
+<SearchTerms terms="logs plantillas recordatorio pago bienvenida aviso pagos recibos impresion tickets contrato cargos recurrentes variables" />

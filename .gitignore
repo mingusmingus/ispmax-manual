@@ -1,0 +1,12 @@
+node_modules/
+dist/
+doc_build/
+
+# Copia de trabajo de `assets/` que genera `npm run assets`.
+# La fuente de verdad es `assets/`, que sí está versionada.
+docs/public/
+
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini

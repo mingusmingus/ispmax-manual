@@ -1,0 +1,49 @@
+---
+title: "Facturación automática"
+description: "Permite que ISPMAX genere por adelantado la próxima factura mensual del cliente, sin que el operador tenga que crearla manualmente. Se configura por servicio desde la pestaña Factu"
+head:
+  - - meta
+    - name: keywords
+      content: "facturacion automatica crear factura dias antes generacion automatica mensual proxima factura siguiente mes anticipacion suspendidos"
+---
+
+<Kicker>Gestión de Clientes</Kicker>
+
+# Facturación automática
+
+<Lead>Permite que ISPMAX genere por adelantado la próxima factura mensual del cliente, sin que el operador tenga que crearla manualmente. Se configura por servicio desde la pestaña **Facturación / Pagos** del cliente, indicando cuántos días antes del vencimiento se debe generar la factura.</Lead>
+
+<Figure src="/assets/imgs/facturacion-automatica.webp" alt="Opción Facturación automática en el servicio del cliente" caption="Configuración de facturación automática dentro del servicio del cliente." />
+
+## Cómo funciona
+
+<Lead>El sistema revisa los servicios cada inicio de mes y, según los días configurados, prepara la factura del mes siguiente con la fecha de pago habitual del cliente. La factura queda registrada con estado <Badge type="danger">No pagado</Badge> hasta que se cobre.</Lead>
+
+| Opción | Significado |
+| --- | --- |
+| **Desactivado** | El sistema no genera facturas anticipadas para este servicio. Las facturas se crean manualmente o el día 1 de cada mes según el flujo estándar. |
+| **1 a 26 días antes** | El sistema genera la próxima factura con esa anticipación respecto al fin del mes en curso. Por ejemplo, si se elige *5 días antes*, la factura del mes siguiente aparecerá disponible 5 días antes de que termine el mes actual. |
+
+## Requisitos
+
+- El servicio debe estar configurado con tipo de comprobante **Factura**. Los servicios marcados como **Recibo** no entran en la facturación automática.
+- El servicio debe tener definido **Día de pago**, **Tipo de impuesto** y **Plan de internet** válidos, ya que esos datos se heredan a la factura generada.
+- Si el cliente tiene cargos recurrentes activos, se incluyen automáticamente en la factura generada.
+
+## Relación con clientes suspendidos
+
+El comportamiento con servicios suspendidos depende del ajuste global **Crear facturas a suspendidos** en [Ajustes › Facturación](/guia/facturacion-ajustes). Si está activo, los servicios suspendidos también reciben factura anticipada; si está inactivo, se omiten hasta su reactivación.
+
+:::tip Consejo
+
+Esta opción es útil para clientes que pagan antes de fin de mes: la factura ya está disponible para descargar o enviar, sin esperar al día 1.
+
+:::
+
+:::warning Atención
+
+Cambiar este valor solo afecta a las próximas generaciones. Las facturas ya emitidas no se modifican. Si necesitas anular una factura generada automáticamente, hazlo desde el listado de facturas del cliente con la opción de anulación.
+
+:::
+
+<SearchTerms terms="facturacion automatica crear factura dias antes generacion automatica mensual proxima factura siguiente mes anticipacion suspendidos" />
